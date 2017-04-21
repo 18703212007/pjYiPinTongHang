@@ -113,3 +113,5 @@
 ///
 #define UserID         [k_defaults objectForKey:@"userID"]
 
+#define WEAK  @weakify(self);
+#define STRONG  @strongify(self);

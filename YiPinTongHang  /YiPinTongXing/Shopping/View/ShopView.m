@@ -41,14 +41,14 @@
 
 -(void)allViews{
     
-    
+    self.navView = [UIView new];
     [self addSubview:self.navView];
     [self.navView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).with.offset(0);
         make.left.equalTo(self.mas_left).with.offset(0);
         make.size.mas_equalTo(CGSizeMake(screen_width, 74));
     }];
-    
+    self.bgView = [UIView new];
     [self addSubview:self.bgView];
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.navView.mas_bottom).with.offset(0);
@@ -57,7 +57,7 @@
         make.bottom.equalTo(self.mas_bottom).with.offset(0);
     }];
     
-    
+    self.textLabel = [UILabel new];
     [self.bgView addSubview:self.textLabel];
     self.textLabel.textColor = [UIColor blackColor];
     self.textLabel.font = [UIFont systemFontOfSize:14.0];
@@ -66,7 +66,7 @@
         make.center.equalTo(self.bgView);
     }];
     
-    
+    self.imgView = [UIImageView new];
     [self addSubview:self.imgView];
     self.imgView.contentMode = UIViewContentModeScaleAspectFit;
     self.imgView.image = [UIImage imageNamed:@"shop_box.png"];
