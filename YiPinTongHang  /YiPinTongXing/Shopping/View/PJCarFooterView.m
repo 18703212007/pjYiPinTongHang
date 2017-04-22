@@ -8,7 +8,6 @@
 
 #import "PJCarFooterView.h"
 #import "PJCarModel.h"
-#import "PJCarListModel.h"
 @interface PJCarFooterView ()
 
 @property (nonatomic, retain) UILabel *priceLabel;
@@ -52,7 +51,7 @@
     
     NSArray *pricesArray = [[[_shopGoodsArray rac_sequence] map:^id(PJCarModel *model) {
         
-        return @(model.list.goodsCnt *model.list.shopPrice);
+        return @(model.goodsCnt *model.shopPrice);
         
     }] array];
     

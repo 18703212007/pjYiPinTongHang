@@ -138,6 +138,7 @@ static NSInteger const SelectButtonTag = 122;
         self.allMoneyLabel.hidden = !isNormal;
         self.deleteButton.hidden = isNormal;
     }];
-
 }
+
+
 @end

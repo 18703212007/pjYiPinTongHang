@@ -11,32 +11,33 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="KGk-i7-Jjw" customClass="PJCarTableViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="PJCarTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bd7-PZ-Q35">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bd7-PZ-Q35">
                         <rect key="frame" x="0.0" y="0.0" width="35" height="99.5"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="TXI-mg-k9K"/>
                             <constraint firstAttribute="width" constant="35" id="sSa-b4-FVS"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" image="xn_circle_normal"/>
+                        <state key="selected" image="xn_circle_select"/>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jph-Id-f2Q">
                         <rect key="frame" x="35" y="8" width="84" height="84"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="84" id="6jZ-8g-kBN"/>
-                            <constraint firstAttribute="width" constant="84" id="rDz-uI-oki"/>
+                            <constraint firstAttribute="width" constant="84" id="kTc-DD-ubg"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这是商品名字,这是商品名字,这是商品名字,这是商品名字,这是商品名字,这是商品名字,这是商品名字,这是商品名字," textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0gP-0g-aHN">
-                        <rect key="frame" x="123" y="10" width="109" height="42"/>
+                        <rect key="frame" x="127" y="10" width="80" height="42"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="42" id="do4-Qw-Srp"/>
+                            <constraint firstAttribute="height" constant="42" id="0fV-1Z-MRZ"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
@@ -62,10 +63,10 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="商品属性商品属性商品属性商品属性" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQ3-Uo-gJG">
-                        <rect key="frame" x="127" y="56" width="105" height="23"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品属性商品属性商品属性商品属性" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQ3-Uo-gJG">
+                        <rect key="frame" x="127" y="56" width="80" height="26"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="22" id="IkK-zX-9eB"/>
+                            <constraint firstAttribute="height" constant="26" id="CiU-XN-jJF"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
@@ -83,35 +84,37 @@
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3As-Qc-IYM" customClass="PJNumberCount">
                         <rect key="frame" x="244" y="58" width="64" height="35"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="R56-kO-H5x"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="3As-Qc-IYM" firstAttribute="top" secondItem="3su-4o-3oB" secondAttribute="bottom" constant="28" id="8my-u1-u49"/>
+                    <constraint firstAttribute="bottom" secondItem="Jph-Id-f2Q" secondAttribute="bottom" constant="8" id="17L-zJ-Iqw"/>
+                    <constraint firstItem="3su-4o-3oB" firstAttribute="leading" secondItem="0gP-0g-aHN" secondAttribute="trailing" constant="35" id="2aw-5i-hPB"/>
+                    <constraint firstItem="kQ3-Uo-gJG" firstAttribute="width" secondItem="0gP-0g-aHN" secondAttribute="width" id="5JE-F1-JIs"/>
                     <constraint firstItem="KVg-jP-rJq" firstAttribute="centerX" secondItem="eR4-cs-p6O" secondAttribute="centerX" id="9VN-NJ-nqH"/>
-                    <constraint firstItem="3As-Qc-IYM" firstAttribute="leading" secondItem="kQ3-Uo-gJG" secondAttribute="trailing" constant="5" id="CJe-AX-iHf"/>
                     <constraint firstItem="KVg-jP-rJq" firstAttribute="width" secondItem="eR4-cs-p6O" secondAttribute="width" id="Ca7-T7-f17"/>
                     <constraint firstAttribute="trailing" secondItem="3su-4o-3oB" secondAttribute="trailing" constant="10" id="LL3-cg-iL0"/>
+                    <constraint firstItem="3As-Qc-IYM" firstAttribute="top" secondItem="3su-4o-3oB" secondAttribute="bottom" constant="26" id="LOO-3b-XMD"/>
                     <constraint firstAttribute="bottom" secondItem="bd7-PZ-Q35" secondAttribute="bottom" id="Ms4-vi-u1F"/>
-                    <constraint firstItem="kQ3-Uo-gJG" firstAttribute="leading" secondItem="Jph-Id-f2Q" secondAttribute="trailing" constant="8" id="NZK-sw-5WS"/>
-                    <constraint firstItem="Jph-Id-f2Q" firstAttribute="leading" secondItem="bd7-PZ-Q35" secondAttribute="trailing" id="OnA-L7-LIg"/>
-                    <constraint firstAttribute="bottom" secondItem="Jph-Id-f2Q" secondAttribute="bottom" constant="8" id="Toe-3w-guU"/>
-                    <constraint firstItem="kQ3-Uo-gJG" firstAttribute="width" secondItem="0gP-0g-aHN" secondAttribute="width" id="VNp-Pe-6rb"/>
-                    <constraint firstItem="0gP-0g-aHN" firstAttribute="leading" secondItem="Jph-Id-f2Q" secondAttribute="trailing" constant="4" id="VmD-Dl-BLn"/>
-                    <constraint firstAttribute="trailing" secondItem="3As-Qc-IYM" secondAttribute="trailing" constant="10" id="Wow-vW-iaE"/>
+                    <constraint firstItem="0gP-0g-aHN" firstAttribute="leading" secondItem="Jph-Id-f2Q" secondAttribute="trailing" constant="8" id="N4q-E7-4KS"/>
                     <constraint firstItem="bd7-PZ-Q35" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Ww1-KN-GvR"/>
                     <constraint firstItem="bd7-PZ-Q35" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Wwx-mb-3SW"/>
                     <constraint firstItem="bd7-PZ-Q35" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YQk-mr-s4g"/>
                     <constraint firstAttribute="bottom" secondItem="bd7-PZ-Q35" secondAttribute="bottom" id="ZMT-VM-Hgm"/>
-                    <constraint firstItem="0gP-0g-aHN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="j4Q-nZ-xuV"/>
+                    <constraint firstItem="Jph-Id-f2Q" firstAttribute="leading" secondItem="bd7-PZ-Q35" secondAttribute="trailing" id="bJq-Mr-IVP"/>
+                    <constraint firstAttribute="trailing" secondItem="3As-Qc-IYM" secondAttribute="trailing" constant="10" id="ddx-Yo-SP5"/>
+                    <constraint firstItem="kQ3-Uo-gJG" firstAttribute="top" secondItem="0gP-0g-aHN" secondAttribute="bottom" constant="4" id="ho7-YL-GWD"/>
+                    <constraint firstItem="Jph-Id-f2Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="i3X-H5-yqv"/>
                     <constraint firstItem="bd7-PZ-Q35" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kdb-Qj-e4y"/>
                     <constraint firstItem="KVg-jP-rJq" firstAttribute="centerY" secondItem="eR4-cs-p6O" secondAttribute="centerY" id="kqb-ty-onY"/>
-                    <constraint firstItem="eR4-cs-p6O" firstAttribute="leading" secondItem="0gP-0g-aHN" secondAttribute="trailing" constant="10" id="mQH-Oa-clI"/>
-                    <constraint firstItem="Jph-Id-f2Q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="ohZ-iE-90j"/>
-                    <constraint firstAttribute="bottom" secondItem="3As-Qc-IYM" secondAttribute="bottom" constant="8" id="vYB-bm-kle"/>
+                    <constraint firstItem="0gP-0g-aHN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="lbO-kl-UeB"/>
+                    <constraint firstItem="kQ3-Uo-gJG" firstAttribute="leading" secondItem="Jph-Id-f2Q" secondAttribute="trailing" constant="8" id="p38-c7-Y12"/>
                     <constraint firstAttribute="trailing" secondItem="eR4-cs-p6O" secondAttribute="trailing" constant="10" id="xcS-6D-eyg"/>
+                    <constraint firstItem="3As-Qc-IYM" firstAttribute="leading" secondItem="kQ3-Uo-gJG" secondAttribute="trailing" constant="5" id="y2o-tk-gKB"/>
                     <constraint firstItem="3su-4o-3oB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="z56-so-RHU"/>
                     <constraint firstItem="eR4-cs-p6O" firstAttribute="top" secondItem="3su-4o-3oB" secondAttribute="bottom" constant="2" id="zNh-S4-iQg"/>
-                    <constraint firstItem="kQ3-Uo-gJG" firstAttribute="top" secondItem="0gP-0g-aHN" secondAttribute="bottom" constant="4" id="zaG-Zk-U0n"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -124,7 +127,11 @@
                 <outlet property="lb_lineWithOldPrice" destination="KVg-jP-rJq" id="rBm-Bc-gAu"/>
                 <outlet property="numberCount" destination="3As-Qc-IYM" id="uDW-qJ-SPh"/>
             </connections>
-            <point key="canvasLocation" x="194" y="-66"/>
+            <point key="canvasLocation" x="-261" y="-103"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="xn_circle_normal" width="20" height="20"/>
+        <image name="xn_circle_select" width="20" height="20"/>
+    </resources>
 </document>

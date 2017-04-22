@@ -9,9 +9,7 @@
 #import "PJCarHeaderView.h"
 
 @interface PJCarHeaderView()
-
-@property (nonatomic, strong) UIButton *storeNameButton;
-
+@property(nonatomic, assign) NSInteger random;
 @end
 
 @implementation PJCarHeaderView
@@ -19,10 +17,19 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+       
         
         [self setHeaderUI];
     }
     return self;
+}
+- (NSInteger)random{
+    
+    NSInteger from = 0;
+    NSInteger to   = 5;
+    
+    return (NSInteger)(from + (arc4random() % (to - from + 1)));
+    
 }
 
 - (void)setHeaderUI{
@@ -42,8 +49,8 @@
     self.storeNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.storeNameButton.frame = CGRectZero;
 #pragma mark - 店铺名字 -
-    [self.storeNameButton setTitle:@"店铺名字_____"
-                          forState:UIControlStateNormal];
+//    [self.storeNameButton setTitle:@""
+//                          forState:UIControlStateNormal];
     [self.storeNameButton setTitleColor:[UIColor blackColor]
                                forState:UIControlStateNormal];
     self.storeNameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;

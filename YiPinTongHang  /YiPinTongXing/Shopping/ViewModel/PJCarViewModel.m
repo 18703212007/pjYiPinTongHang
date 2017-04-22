@@ -8,13 +8,30 @@
 
 #import "PJCarViewModel.h"
 #import "PJCarModel.h"
-#import "PJCarListModel.h"
 @interface PJCarViewModel (){
-    
+    /**
+     *  店铺的数量
+     */
+    NSArray *_allDataArray;
+    /**
+     *  店铺商品数量
+     */
     NSArray *_shopGoodsCount;
+    /**
+     *  图片组
+     */
     NSArray *_goodsPicArray;
+    /**
+     *  价格组
+     */
     NSArray *_goodsPriceArray;
+    /**
+     *  商品描述组
+     */
     NSArray *_goodsAttrsArray;
+    /**
+     *  <#Description#>
+     */
     NSArray *_goodsCountArray;
     
 }
@@ -39,6 +56,8 @@
                             @"http://pic.5tu.cn/uploads/allimg/1506/091630516760.jpg"];
         _goodsPriceArray = @[@(30.45),@(120.09),@(7.8),@(11.11),@(56.1),@(12)];
         _goodsCountArray = @[@(12),@(21),@(1),@(10),@(3),@(5)];
+        [self getDataWithID:@{@"uid":UserID}];
+
     }
     return self;
 }
@@ -67,14 +86,15 @@
         NSMutableArray *goodsArray = [NSMutableArray arrayWithCapacity:goodsCount];
         for (int x = 0; x<goodsCount; x++) {
             PJCarModel *carModel  = [[PJCarModel alloc] init];
-            carModel.shopId         = @"122115465400";
-            carModel.list.shopPrice        = [_goodsPriceArray[self.random] floatValue];
-            carModel.list.marketPrice      = [_goodsPriceArray[self.random] floatValue]+10;
-            carModel.list.goodsName        = [NSString stringWithFormat:@"%@这是一个很长很长的名字呀呀呀呀呀呀",@(x)];
-            carModel.list.goodsStock       = 22;
-            carModel.list.goodsImg   = _goodsPicArray[self.random];
-            carModel.list.goodsCnt   = [_goodsCountArray[self.random] integerValue];
-            carModel.list.goodsVal   = _goodsAttrsArray[self.random];
+            carModel.goodsId         = @"122115465400";
+//            carModel.shopName       = @"1234ergdvsf";
+            carModel.shopPrice        = [_goodsPriceArray[self.random] floatValue];
+            carModel.marketPrice      = [_goodsPriceArray[self.random] floatValue]+10;
+            carModel.goodsName        = [NSString stringWithFormat:@"%@这是一个很长很长的名字呀呀呀呀呀呀",@(x)];
+            carModel.goodsStock       = 22;
+            carModel.goodsImg   = _goodsPicArray[self.random];
+            carModel.goodsCnt   = [_goodsCountArray[self.random] integerValue];
+            carModel.goodsVal   = _goodsAttrsArray[self.random];
             
             [goodsArray addObject:carModel];
             allGoodsCount++;
@@ -85,6 +105,7 @@
     self.cartData = storeArray;
     self.shopSelectArray = shopSelectAarry;
     self.cartGoodsCount = allGoodsCount;
+    NSLog(@"self.cartGoodsCount:%ld",self.cartGoodsCount);
 }
 
 - (float)getAllPrices{
@@ -102,7 +123,7 @@
             }
             return model.isSelect;
         }] map:^id(PJCarModel *model) {
-            return @(model.list.goodsCnt*model.list.shopPrice);
+            return @(model.goodsCnt*model.shopPrice);
         }];
     }] array];
     for (NSArray *priceA in pricesArray) {
@@ -125,13 +146,14 @@
         return  [[[[value rac_sequence] map:^id(PJCarModel *model) {
             [model setValue:@(isSelect) forKey:@"isSelect"];
             if (model.isSelect) {
-                allPrices += model.list.goodsCnt*model.list.shopPrice;
+                allPrices += model.goodsCnt*model.shopPrice;
             }
             return model;
         }] array] mutableCopy];
     }] array] mutableCopy];
     self.allPrices = allPrices;
     [self.cartTableView reloadData];
+
 }
 
 - (void)rowSelect:(BOOL)isSelect IndexPath:(NSIndexPath *)indexPath{
@@ -157,7 +179,12 @@
     /*重新计算价格*/
     self.allPrices = [self getAllPrices];
 }
-
+/**
+ *  改变数量
+ *
+ *  @param quantity  数量
+ *  @param indexPath indexPath
+ */
 - (void)rowChangeQuantity:(NSInteger)quantity indexPath:(NSIndexPath *)indexPath{
     
     NSInteger section  = indexPath.section;
@@ -237,6 +264,22 @@
     self.allPrices = 0;
     /*重新计算价格*/
     self.allPrices = [self getAllPrices];
+}
+
+
+
+-(void)getDataWithID:(NSDictionary*)userIDDic{
+    
+    NSString *urlstring = @"m=Customer&c=Cart&a=cartList";
+    
+    [[AFHTTPClient shareInstance] requestWithPath:[NSString stringWithFormat:@"%@%@",URLSTRING,urlstring] Method:HTTPRequestPost Paramenters:userIDDic PrepareExecute:nil Success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@",[[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil] objectForKey:@"data"] );
+        _allDataArray =[[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil] objectForKey:@"data"];
+        
+    } Failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+    
 }
 
 @end

@@ -56,7 +56,10 @@
 
 //选中删除
 - (void)deleteGoodsBySelect;
-
+/**
+ *  数据
+ */
+-(void)getDataWithID:(NSDictionary*)userIDDic;
 
 @end
 

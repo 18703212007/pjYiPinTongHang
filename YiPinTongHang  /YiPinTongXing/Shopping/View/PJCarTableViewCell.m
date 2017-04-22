@@ -9,7 +9,6 @@
 #import "PJCarTableViewCell.h"
 #import "PJNumberCount.h"
 #import "PJCarModel.h"
-#import "PJCarListModel.h"
 @interface PJCarTableViewCell ()
 /**
  *  划线
@@ -30,19 +29,19 @@
 
 - (void)setModel:(PJCarModel *)model{
     
-    self.lb_goodsName.text              = model.list.goodsName;
-    self.lb_goodsPrice.text             = [NSString stringWithFormat:@"¥%.2f",model.list.shopPrice];
-    self.lb_goodsOldPrice.text          = [NSString stringWithFormat:@"¥%.2f",model.list.marketPrice];
-    if (model.list.marketPrice) {
+    self.lb_goodsName.text              = model.goodsName;
+    self.lb_goodsPrice.text             = [NSString stringWithFormat:@"¥%.2f",model.shopPrice];
+    self.lb_goodsOldPrice.text          = [NSString stringWithFormat:@"¥%.2f",model.marketPrice];
+    if (model.marketPrice) {
         self.lb_lineWithOldPrice.hidden = NO;
     }else{
         self.lb_lineWithOldPrice.hidden = YES;
     }
-    self.numberCount.totalNum           = model.list.goodsStock;
-    self.numberCount.currentCountNumber = model.list.goodsCnt;
+    self.numberCount.totalNum           = model.goodsStock;
+    self.numberCount.currentCountNumber = model.goodsCnt;
 //    NSLog(@"%ld",self.numberCount.totalNum);
     self.SelectShopGoodsButton.selected = model.isSelect;
-    [self.img_goodsImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",k_Yptx_URL,model.list.goodsImg]] placeholderImage:[UIImage imageNamed:@"Cellplaceholder"]];
+    [self.img_goodsImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",k_Yptx_URL,model.goodsImg]] placeholderImage:[UIImage imageNamed:@"Cellplaceholder"]];
 }
 
 + (CGFloat)getCartCellHeight{

@@ -14,18 +14,18 @@
 @interface ShoppingViewController ()
 {
     BOOL _isIdit;
-    UIBarButtonItem *_editItem;
-   // UIBarButtonItem *_makeDataItem;
 }
-@property(nonatomic,strong)ShopView *shopView;
+@property (nonatomic,strong)ShopView        *shopView;
 
-@property (nonatomic, strong) PJCarUIService *service;
+@property (nonatomic,strong) PJCarUIService *service;
 
-@property (nonatomic, strong) PJCarViewModel *viewModel;
+@property (nonatomic,strong) PJCarViewModel *viewModel;
 
-@property (nonatomic, strong) UITableView     *cartTableView;
+@property (nonatomic,strong) UITableView    *cartTableView;
 
-@property (nonatomic, strong) PJCarBar       *carBar;
+@property (nonatomic,strong) PJCarBar       *carBar;
+
+@property (nonatomic,strong) UILabel        *lb_title;
 
 
 @end
@@ -51,29 +51,12 @@
     [super viewDidLoad];
     
     [self checkLogin];
-    [self getDataWithID:@{@"uid":UserID}];
     [self CostomNav];
     
     [self.shopView.goShopBtn addTarget:self action:@selector(goShopBtnDidClicked:) forControlEvents:UIControlEventTouchUpInside];
     self.automaticallyAdjustsScrollViewInsets = YES;
-    self.title = @"购物车";
-    /*eidit button*/
     _isIdit = NO;
-    /*
-    _makeDataItem = [[UIBarButtonItem alloc] initWithTitle:@"新数据"
-                                                     style:UIBarButtonItemStyleDone
-                                                    target:self
-                                                    action:@selector(makeNewData:)];
-    _makeDataItem.tintColor = [UIColor redColor];
-     
-    self.navigationItem.leftBarButtonItem = _makeDataItem;
-    */
-    _editItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑"
-                                                 style:UIBarButtonItemStyleDone
-                                                target:self
-                                                action:@selector(editClick:)];
-    _editItem.tintColor = RGBA(170, 170, 170, 1);
-    self.navigationItem.rightBarButtonItem = _editItem;
+    
     /*add view*/
     [self.view addSubview:self.cartTableView];
     [self.view addSubview:self.carBar];
@@ -106,12 +89,13 @@
     [RACObserve(self.viewModel, cartGoodsCount) subscribeNext:^(NSNumber *x) {
         STRONG
         if(x.integerValue == 0){
-            self.title = [NSString stringWithFormat:@"购物车"];
+            self.lb_title.text = [NSString stringWithFormat:@"购物车"];
         } else {
-            self.title = [NSString stringWithFormat:@"购物车(%@)",x];
+            self.lb_title.text = [NSString stringWithFormat:@"购物车(%@)",x];
         }
         
     }];
+    
     
     
     
@@ -180,12 +164,6 @@
     [self.cartTableView reloadData];
 }
 
-- (void)editClick:(UIBarButtonItem *)item{
-    _isIdit = !_isIdit;
-    NSString *itemTitle = _isIdit == YES?@"完成":@"编辑";
-    _editItem.title = itemTitle;
-    self.carBar.isNormalState = !_isIdit;
-}
 
 - (void)makeNewData:(UIBarButtonItem *)item{
     
@@ -210,18 +188,7 @@
     
 }
 
--(void)getDataWithID:(NSDictionary*)userIDDic{
-    
-    NSString *urlstring = @"m=Customer&c=Cart&a=cartList";
-    
-    [[AFHTTPClient shareInstance] requestWithPath:[NSString stringWithFormat:@"%@%@",URLSTRING,urlstring] Method:HTTPRequestPost Paramenters:userIDDic PrepareExecute:nil Success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@",[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil]);
-        
-    } Failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-    }];
-    
-}
+
 
 
 
@@ -259,8 +226,9 @@
 //    [self.rightBtn1 setImage:[UIImage imageNamed:@"personal_message.png"] forState:UIControlStateNormal];
      editBtn.titleLabel.font = [UIFont systemFontOfSize:17.0];
     [editBtn setTitle:@"编辑" forState:UIControlStateNormal];
+    [editBtn setTitle:@"完成" forState:UIControlStateSelected];
     [editBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [editBtn addTarget:self action:@selector(rightBtn1DidClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [editBtn addTarget:self action:@selector(editBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:editBtn];
     [editBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(view.mas_right).with.offset(-10);
@@ -281,12 +249,11 @@
 //        make.width.mas_equalTo(@22);
 //    }];
     
-    UILabel *title = [UILabel new];
-    title.textAlignment = NSTextAlignmentCenter;
-    title.textColor = [UIColor whiteColor];
-    title.text = @"购物车";
-    [view addSubview:title];
-    [title mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.lb_title = [UILabel new];
+    self.lb_title.textAlignment = NSTextAlignmentCenter;
+    self.lb_title.textColor = [UIColor whiteColor];
+    [view addSubview:self.lb_title];
+    [self.lb_title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
         make.top.equalTo(view.mas_top).with.offset(37);
         make.width.mas_equalTo(view);
@@ -300,9 +267,12 @@
     
     
 }
--(void)rightBtn1DidClicked:(UIButton*)sender{
+-(void)editBtnClicked:(UIButton*)sender{
     
+    _isIdit = !_isIdit;
     
+    self.carBar.isNormalState = !_isIdit;
+    sender.selected = !sender.selected;
     
 }
 

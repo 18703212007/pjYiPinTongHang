@@ -10,17 +10,40 @@
 @class PJCarListModel;
 @interface PJCarModel : NSObject
 /**
- *  店铺ID
+ *  商品名字
  */
-@property(nonatomic,strong)NSString *shopId;
+@property(nonatomic,strong)NSString *goodsId;
 /**
- *  店铺名
+ *  商品名字
  */
-@property(nonatomic,strong)NSString *shopName;
+@property(nonatomic,strong)NSString *goodsName;
 /**
- *  列表
+ *  店铺价格
  */
-@property(nonatomic,strong)PJCarListModel *list;
+@property(nonatomic,assign)CGFloat shopPrice;
+/**
+ *  市场价格
+ */
+@property(nonatomic,assign)CGFloat marketPrice;
+/**
+ *  商品图片
+ */
+@property(nonatomic,strong)UIImageView *goodsImg;
+/**
+ *  商品数量
+ */
+@property(nonatomic,assign)NSUInteger goodsCnt;
+/**
+ *  选择的商品属性
+ */
+@property(nonatomic,strong)NSString *goodsVal;
+
+#pragma mark - 缺少库存量 -
+/**
+ *  商品的库存量
+ */
+@property(nonatomic,assign)NSInteger goodsStock;
+
 /**
  *  商品是否被选中
  */

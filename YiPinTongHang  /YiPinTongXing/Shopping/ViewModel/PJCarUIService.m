@@ -12,7 +12,6 @@
 #import "PJCarHeaderView.h"
 #import "PJCarFooterView.h"
 #import "PJCarModel.h"
-#import "PJCarListModel.h"
 #import "PJNumberCount.h"
 
 @implementation PJCarUIService
@@ -37,10 +36,15 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
+     _array = @[@"1蓝色",@"2白色",@"黑3色",@"4天蓝色",@"5藏青色",@"6卡其色",@"蓝7色",@"白8色",@"9黑色",@"天10蓝色",@"11藏青色",@"12卡其色",@"蓝13色",@"白14色",@"黑15色",@"16天蓝色",@"17藏青色",@"18卡其色",@"19蓝色",@"20白色"];
     NSMutableArray *shopArray = self.viewModel.cartData[section];
     
+    /**
+     *  店铺名字 以及店铺ID
+     */
     PJCarHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"PJCarHeaderView"];
+    [headerView.storeNameButton setTitle:[NSString stringWithFormat:@"%@",_array[section]]forState:UIControlStateNormal];
+    
     //店铺全选
     [[[headerView.selectStoreGoodsButton rac_signalForControlEvents:UIControlEventTouchUpInside]takeUntil:headerView.rac_prepareForReuseSignal] subscribeNext:^(UIButton *xx) {
         xx.selected = !xx.selected;

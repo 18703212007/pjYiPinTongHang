@@ -12,5 +12,7 @@
 
 @property (nonatomic, strong) PJCarViewModel *viewModel;
 
+@property(nonatomic, strong) NSArray *array;
+
 
 @end

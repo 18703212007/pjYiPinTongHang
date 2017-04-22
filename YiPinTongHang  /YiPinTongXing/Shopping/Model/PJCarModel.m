@@ -7,7 +7,6 @@
 //
 
 #import "PJCarModel.h"
-#import "PJCarListModel.h"
 @implementation PJCarModel
 
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key
@@ -16,6 +15,6 @@
 }
 
 -(NSString *)description{
-    return [NSString stringWithFormat:@"shopID:%@ shopName:%@,list:%@",self.shopId,self.shopName,self.list];
+    return [NSString stringWithFormat:@"goodsId:%@ goodsName:%@,shopPrice:%.2f,shopPrice:%.2f,img:%@,商品数量:%ld,商品库存:%ld,商品参数:%@",self.goodsId,self.goodsName,self.shopPrice,self.marketPrice,self.goodsImg,self.goodsCnt,self.goodsStock,self.goodsVal];
 }
 @end
