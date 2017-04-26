@@ -138,7 +138,7 @@ static CGFloat const Wd = 28;
     RAC(self.addButton,enabled)  = addSignal;
     /* 内容颜色显示 */
     RACSignal *numColorSignal = [RACObserve(self, totalNum) map:^id(NSNumber *totalValue) {
-        return totalValue.integerValue==0?[UIColor redColor]:[UIColor blackColor];
+        return totalValue.integerValue == 0 ?[UIColor redColor]:[UIColor blackColor];
     }];
     RAC(self.numberTT,textColor) = numColorSignal;
     /*  */

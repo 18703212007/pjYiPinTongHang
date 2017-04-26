@@ -31,7 +31,7 @@
 
 @property(nonatomic,strong)NSDictionary *updateDic;
 
-@property(nonatomic,strong)AddressChooseModel *addModel;
+@property(nonatomic,strong)AddressGetModel *addModel;
 
 @property(nonatomic,strong)NSString *userID;
 
@@ -93,7 +93,7 @@
     //        lb.text = string;
     //        self.addModel = chooseAddress;
     //    };
-    [chooseAreaVC getMessageWithBlock:^(NSString *string, AddressChooseModel *chooseAddress) {
+    [chooseAreaVC getMessageWithBlock:^(NSString *string, AddressGetModel *chooseAddress) {
         lb.text = string;
         self.addModel = chooseAddress;
     }];
@@ -115,21 +115,24 @@
     self.userID = UserID;
     self.updateDic = [NSDictionary dictionary];
     
-    
+#warning 修改地址有问题(修改)
     
     if (self.arid) {
+        
         _updateDic = @{@"arid":self.arid,
-                       @"uid":self.userID,
-                       @"uname":self.addressView.consigneeView.tf_name.text,
-                       @"utel":self.addressView.phoneNumView.tf_name.text,
-                       @"province":self.addModel.provinceID,
-                       @"city":self.addModel.cityID,
-                       @"area":self.addModel.areaID,
-                       @"ar":self.addressView.detailsTxetView.text,
+                       @"uid":UserID,
+                       @"uname":self.addressView.consigneeView.tf_name.text == nil?self.name:self.addressView.consigneeView.tf_name.text,
+                       @"utel":self.addressView.phoneNumView.tf_name.text == nil?self.phoneNum:self.addressView.phoneNumView.tf_name.text,
+                       @"province":self.addModel.provinceID?self.addModel.provinceID:self.provinceID,
+                       @"city":self.addModel.cityID?self.addModel.cityID:self.cityID,
+                       @"area":self.addModel.areaID?self.addModel.areaID:self.areaID,
+                       @"ar":self.addressView.detailsTxetView.text == nil? self.detailsString:self.addressView.detailsTxetView.text,
                        };
+        
+    
     }else{
-        _updateDic = @{
-                       @"uid":self.userID,
+               _updateDic = @{
+                       @"uid":UserID,
                        @"uname":self.addressView.consigneeView.tf_name.text,
                        @"utel":self.addressView.phoneNumView.tf_name.text,
                        @"province":self.addModel.provinceID,
@@ -139,6 +142,7 @@
                        };
     }
     
+    NSLog(@"%@",_updateDic);
     [self uploadDataWithDictionary:_updateDic];
     
     

@@ -51,14 +51,14 @@
     [self checkLogin];
     
     self.navigationController.navigationBar.hidden = YES;
-    
+    NSLog(@"%@",NSHomeDirectory());
     [self setTable];
     
 }
 
 
 -(void)checkLogin{
-    
+    NSLog(@"%ld",[k_defaults boolForKey:k_LoginStatus]);
     if (![k_defaults boolForKey:k_LoginStatus]) {
         
         LoginViewController *login = [LoginViewController new];

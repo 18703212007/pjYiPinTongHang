@@ -31,7 +31,7 @@
     
     _priceLabel = [[UILabel alloc] init];
     _priceLabel.textAlignment = NSTextAlignmentRight;
-    _priceLabel.text = @"小记:￥15.80";
+//    _priceLabel.text = @"小记:￥15.80";
     _priceLabel.textColor = [UIColor redColor];
     
     [self addSubview:_priceLabel];
@@ -51,7 +51,7 @@
     
     NSArray *pricesArray = [[[_shopGoodsArray rac_sequence] map:^id(PJCarModel *model) {
         
-        return @(model.goodsCnt *model.shopPrice);
+        return @([model.goodsCnt floatValue] *[model.shopPrice integerValue]);
         
     }] array];
     

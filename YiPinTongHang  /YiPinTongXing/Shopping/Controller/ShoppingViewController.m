@@ -42,14 +42,16 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
+    [self.cartTableView reloadData];
     [self getNewData];
 }
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    /*add view*/
+    [self.view addSubview:self.cartTableView];
+    [self.view addSubview:self.carBar];
     [self checkLogin];
     [self CostomNav];
     
@@ -57,9 +59,6 @@
     self.automaticallyAdjustsScrollViewInsets = YES;
     _isIdit = NO;
     
-    /*add view*/
-    [self.view addSubview:self.cartTableView];
-    [self.view addSubview:self.carBar];
     
     /* RAC  */
     //全选
@@ -104,6 +103,8 @@
     // Do any additional setup after loading the view.
 }
 
+
+
 #pragma mark - lazy load
 
 - (PJCarViewModel *)viewModel{
@@ -112,6 +113,7 @@
         _viewModel = [[PJCarViewModel alloc] init];
         _viewModel.cartVC = self;
         _viewModel.cartTableView  = self.cartTableView;
+        
     }
     return _viewModel;
 }
@@ -140,7 +142,7 @@
         _cartTableView.dataSource = self.service;
         _cartTableView.delegate   = self.service;
         _cartTableView.backgroundColor = RGBA(240, 240, 240, 1);
-        _cartTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 50)];
+//        _cartTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 50)];
     }
     return _cartTableView;
 }
@@ -149,6 +151,8 @@
     
     if (!_carBar) {
         _carBar = [[PJCarBar alloc] initWithFrame:CGRectMake(0, screen_height-50-49, screen_width, 50)];
+        [_carBar.balanceButton addTarget:self action:@selector(bananceBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [_carBar.deleteButton addTarget:self action:@selector(deleteBtn:) forControlEvents:UIControlEventTouchUpInside];
         _carBar.isNormalState = YES;
     }
     return _carBar;
@@ -165,10 +169,7 @@
 }
 
 
-- (void)makeNewData:(UIBarButtonItem *)item{
-    
-    [self getNewData];
-}
+
 
 
 
@@ -180,6 +181,7 @@
         
         LoginViewController *login = [LoginViewController new];
         [self presentViewController:login animated:YES completion:^{
+            [self.cartTableView reloadData];
         }];
         
     }else{

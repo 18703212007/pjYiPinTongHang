@@ -41,5 +41,10 @@
 
 @property (nonatomic, strong) PJCarModel *model;
 
+
+@property (nonatomic, strong) NSString   *goodsId;
+
+
+
 + (CGFloat)getCartCellHeight;
 @end

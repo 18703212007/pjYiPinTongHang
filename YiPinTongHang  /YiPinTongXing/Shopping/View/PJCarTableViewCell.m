@@ -30,17 +30,25 @@
 - (void)setModel:(PJCarModel *)model{
     
     self.lb_goodsName.text              = model.goodsName;
-    self.lb_goodsPrice.text             = [NSString stringWithFormat:@"¥%.2f",model.shopPrice];
-    self.lb_goodsOldPrice.text          = [NSString stringWithFormat:@"¥%.2f",model.marketPrice];
+    
+    self.lb_goodsPrice.text             = [NSString stringWithFormat:@"¥%.2f",[model.shopPrice floatValue]];
+    
+    self.lb_goodsOldPrice.text          = [NSString stringWithFormat:@"¥%.2f",[model.marketPrice floatValue]];
     if (model.marketPrice) {
         self.lb_lineWithOldPrice.hidden = NO;
     }else{
         self.lb_lineWithOldPrice.hidden = YES;
     }
-    self.numberCount.totalNum           = model.goodsStock;
-    self.numberCount.currentCountNumber = model.goodsCnt;
-//    NSLog(@"%ld",self.numberCount.totalNum);
+    self.goodsId                        = model.goodsId;
+    
+    self.lb_goodsAttr.text              = model.goodsVal;
+    
+    self.numberCount.totalNum           = model.stock;
+    
+    self.numberCount.currentCountNumber = [model.goodsCnt integerValue];
+    
     self.SelectShopGoodsButton.selected = model.isSelect;
+    
     [self.img_goodsImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",k_Yptx_URL,model.goodsImg]] placeholderImage:[UIImage imageNamed:@"Cellplaceholder"]];
 }
 

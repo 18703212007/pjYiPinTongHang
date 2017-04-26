@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bd7-PZ-Q35">
-                        <rect key="frame" x="0.0" y="0.0" width="35" height="99.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="35" height="100"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="TXI-mg-k9K"/>
                             <constraint firstAttribute="width" constant="35" id="sSa-b4-FVS"/>
@@ -29,7 +29,7 @@
                         <state key="selected" image="xn_circle_select"/>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jph-Id-f2Q">
-                        <rect key="frame" x="35" y="8" width="84" height="84"/>
+                        <rect key="frame" x="35" y="8" width="84" height="83"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="84" id="kTc-DD-ubg"/>
                         </constraints>
@@ -47,7 +47,7 @@
                         <rect key="frame" x="244" y="10" width="68" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Rao-u9-6vo"/>
-                            <constraint firstAttribute="width" constant="68" id="XNU-5w-ans"/>
+                            <constraint firstAttribute="width" constant="78" id="XNU-5w-ans"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.89411764709999997" green="0.090196078430000007" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -72,7 +72,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVg-jP-rJq">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVg-jP-rJq">
                         <rect key="frame" x="250" y="31" width="70" height="19"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="9vS-Wd-bbv"/>
@@ -91,7 +91,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Jph-Id-f2Q" secondAttribute="bottom" constant="8" id="17L-zJ-Iqw"/>
-                    <constraint firstItem="3su-4o-3oB" firstAttribute="leading" secondItem="0gP-0g-aHN" secondAttribute="trailing" constant="35" id="2aw-5i-hPB"/>
+                    <constraint firstItem="3su-4o-3oB" firstAttribute="leading" secondItem="0gP-0g-aHN" secondAttribute="trailing" constant="25" id="2aw-5i-hPB"/>
                     <constraint firstItem="kQ3-Uo-gJG" firstAttribute="width" secondItem="0gP-0g-aHN" secondAttribute="width" id="5JE-F1-JIs"/>
                     <constraint firstItem="KVg-jP-rJq" firstAttribute="centerX" secondItem="eR4-cs-p6O" secondAttribute="centerX" id="9VN-NJ-nqH"/>
                     <constraint firstItem="KVg-jP-rJq" firstAttribute="width" secondItem="eR4-cs-p6O" secondAttribute="width" id="Ca7-T7-f17"/>

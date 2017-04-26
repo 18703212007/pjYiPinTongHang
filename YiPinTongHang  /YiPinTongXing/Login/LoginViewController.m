@@ -155,11 +155,10 @@
             if (code == 200) {
                 [self alertWithMassage:message];
                 
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:userID forKey:k_UserID];
-                [defaults setBool:YES forKey:k_LoginStatus];
-                [defaults synchronize];
-                k_defaults = defaults;
+                [k_defaults setObject:userID forKey:k_UserID];
+                [k_defaults setBool:YES forKey:k_LoginStatus];
+                [k_defaults synchronize];
+                
                 [self dismissViewControllerAnimated:YES completion:^{
                     
                 }];

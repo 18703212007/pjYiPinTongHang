@@ -11,8 +11,7 @@
 @interface PJCarUIService : NSObject<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) PJCarViewModel *viewModel;
-
-@property(nonatomic, strong) NSArray *array;
+@property (nonatomic, strong) NSString       *shopID;
 
 
 @end

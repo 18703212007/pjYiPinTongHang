@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AddressChooseModel.h"
-typedef void(^ReturnBlock)(AddressChooseModel *model);
+typedef void(^ReturnBlock)(AddressGetModel *model);
 
 @interface AddAddressViewController : UIViewController
 @property(nonatomic,strong)NSString *addString;
@@ -29,4 +29,7 @@ typedef void(^ReturnBlock)(AddressChooseModel *model);
 
 @property(nonatomic,strong)NSString *arid;
 
+@property(nonatomic,strong)NSString *provinceID;
+@property(nonatomic,strong)NSString *cityID;
+@property(nonatomic,strong)NSString *areaID;
 @end

@@ -41,10 +41,15 @@
 
 ///省级id
 @property(nonatomic,strong)NSString * provinceID;
+@property(nonatomic,strong)NSString * provinceName;
 ///城市id
 @property(nonatomic,strong)NSString * cityID;
+@property(nonatomic,strong)NSString * cityName;
+
 ///区县id
 @property(nonatomic,strong)NSString * areaID;
+@property(nonatomic,strong)NSString * areaName;
+
 
 ///条件（1是默认，0是非默认）
 @property(nonatomic,strong)NSString * isstate;

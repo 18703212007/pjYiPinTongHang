@@ -8,32 +8,13 @@
 
 #import "PJCarViewModel.h"
 #import "PJCarModel.h"
+#import "PJCarListModel.h"
 @interface PJCarViewModel (){
     /**
      *  店铺的数量
      */
     NSArray *_allDataArray;
-    /**
-     *  店铺商品数量
-     */
-    NSArray *_shopGoodsCount;
-    /**
-     *  图片组
-     */
-    NSArray *_goodsPicArray;
-    /**
-     *  价格组
-     */
-    NSArray *_goodsPriceArray;
-    /**
-     *  商品描述组
-     */
-    NSArray *_goodsAttrsArray;
-    /**
-     *  <#Description#>
-     */
-    NSArray *_goodsCountArray;
-    
+        
 }
 //随机获取店铺下商品数
 @property (nonatomic, assign) NSInteger random;
@@ -45,67 +26,66 @@
 {
     self = [super init];
     if (self) {
-        //6
-        _shopGoodsCount      = @[@(1),@(8),@(5),@(2),@(4),@(4)];
-        _goodsAttrsArray     = @[@"蓝色",@"白色",@"黑色",@"天蓝色",@"藏青色",@"卡其色"];
-        _goodsPicArray       = @[@"http://pic.5tu.cn/uploads/allimg/1606/pic_5tu_big_2016052901023305535.jpg",
-                            @"http://pic.5tu.cn/uploads/allimg/1605/pic_5tu_big_2016052901023303745.jpg",
-                            @"http://pic.5tu.cn/uploads/allimg/1605/pic_5tu_big_201605291711245481.jpg",
-                            @"http://pic.5tu.cn/uploads/allimg/1605/pic_5tu_big_2016052901023285762.jpg",
-                            @"http://pic.5tu.cn/uploads/allimg/1506/091630516760.jpg",
-                            @"http://pic.5tu.cn/uploads/allimg/1506/091630516760.jpg"];
-        _goodsPriceArray = @[@(30.45),@(120.09),@(7.8),@(11.11),@(56.1),@(12)];
-        _goodsCountArray = @[@(12),@(21),@(1),@(10),@(3),@(5)];
-        [self getDataWithID:@{@"uid":UserID}];
-
     }
     return self;
 }
 
-- (NSInteger)random{
-    
-    NSInteger from = 0;
-    NSInteger to   = 5;
-    
-    return (NSInteger)(from + (arc4random() % (to - from + 1)));
-    
-}
+
 
 #pragma mark - make data
 
 - (void)getData{
     //数据个数
-    NSInteger allCount = 20;
-    NSInteger allGoodsCount = 0;
-    NSMutableArray *storeArray = [NSMutableArray arrayWithCapacity:allCount];
-    NSMutableArray *shopSelectAarry = [NSMutableArray arrayWithCapacity:allCount];
-    //创造店铺数据
-    for (int i = 0; i<allCount; i++) {
-        //创造店铺下商品数据
-        NSInteger goodsCount = [_shopGoodsCount[self.random] intValue];
-        NSMutableArray *goodsArray = [NSMutableArray arrayWithCapacity:goodsCount];
-        for (int x = 0; x<goodsCount; x++) {
-            PJCarModel *carModel  = [[PJCarModel alloc] init];
-            carModel.goodsId         = @"122115465400";
-//            carModel.shopName       = @"1234ergdvsf";
-            carModel.shopPrice        = [_goodsPriceArray[self.random] floatValue];
-            carModel.marketPrice      = [_goodsPriceArray[self.random] floatValue]+10;
-            carModel.goodsName        = [NSString stringWithFormat:@"%@这是一个很长很长的名字呀呀呀呀呀呀",@(x)];
-            carModel.goodsStock       = 22;
-            carModel.goodsImg   = _goodsPicArray[self.random];
-            carModel.goodsCnt   = [_goodsCountArray[self.random] integerValue];
-            carModel.goodsVal   = _goodsAttrsArray[self.random];
-            
-            [goodsArray addObject:carModel];
-            allGoodsCount++;
+  
+    NSString *urlstring = @"m=Customer&c=Cart&a=cartList";
+
+    [[AFHTTPClient shareInstance] requestWithPath:[NSString stringWithFormat:@"%@%@",URLSTRING,urlstring] Method:HTTPRequestPost Paramenters:@{@"uid":UserID} PrepareExecute:nil Success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSInteger allGoodsCount = 0;
+
+        _allDataArray =[[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil] objectForKey:@"data"];
+        NSMutableArray *storeArray = [NSMutableArray array];
+        NSMutableArray *shopSelectAarry = [NSMutableArray array];
+        NSMutableArray *shopsName = [NSMutableArray array];
+        NSMutableArray *shopsID = [NSMutableArray array];
+
+        for (NSDictionary *dictionary in _allDataArray) {
+            /**
+             *  店铺的名字和ID
+             */
+            NSMutableArray *array = [NSMutableArray array];
+            PJCarListModel *mod = [PJCarListModel new];
+            [mod setValuesForKeysWithDictionary:dictionary];
+            NSString *shopName = [dictionary objectForKey:@"shopName"];
+            NSString *shopID = [dictionary objectForKey:@"shopId"];
+
+            [shopsName addObject:shopName];
+            [shopsID   addObject:shopID];
+            /**
+             *  商品信息
+             */
+            for (NSDictionary *d in [dictionary objectForKey:@"list"]) {
+                allGoodsCount++;
+                PJCarModel *model = [PJCarModel new];
+                [model setValuesForKeysWithDictionary:d];
+                [array addObject:model];
+                
+            }
+            [storeArray addObject:array];
+            [shopSelectAarry addObject:@(NO)];
         }
-        [storeArray addObject:goodsArray];
-        [shopSelectAarry addObject:@(NO)];
-    }
-    self.cartData = storeArray;
-    self.shopSelectArray = shopSelectAarry;
-    self.cartGoodsCount = allGoodsCount;
-    NSLog(@"self.cartGoodsCount:%ld",self.cartGoodsCount);
+
+        self.cartData = [NSMutableArray arrayWithArray:storeArray];
+        self.shopsNameData = [NSMutableArray arrayWithArray:shopsName];
+        self.shopsIDData = [NSMutableArray arrayWithArray:shopsID];
+        self.shopSelectArray = shopSelectAarry;
+        self.cartGoodsCount = allGoodsCount;
+        NSLog(@"%@",_cartData);
+        [self.cartTableView reloadData];
+    } Failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+    
+
 }
 
 - (float)getAllPrices{
@@ -113,7 +93,7 @@
     __block float allPrices   = 0;
     NSInteger shopCount       = self.cartData.count;
     NSInteger shopSelectCount = self.shopSelectArray.count;
-    if (shopSelectCount == shopCount && shopCount!=0) {
+    if (shopSelectCount == shopCount && shopCount != 0) {
         self.isSelectAll = YES;
     }
     NSArray *pricesArray = [[[self.cartData rac_sequence] map:^id(NSMutableArray *value) {
@@ -123,7 +103,7 @@
             }
             return model.isSelect;
         }] map:^id(PJCarModel *model) {
-            return @(model.goodsCnt*model.shopPrice);
+            return @([model.goodsCnt integerValue]*[model.shopPrice floatValue]);
         }];
     }] array];
     for (NSArray *priceA in pricesArray) {
@@ -131,7 +111,6 @@
             allPrices += price.floatValue;
         }
     }
-    
     return allPrices;
 }
 
@@ -146,8 +125,14 @@
         return  [[[[value rac_sequence] map:^id(PJCarModel *model) {
             [model setValue:@(isSelect) forKey:@"isSelect"];
             if (model.isSelect) {
-                allPrices += model.goodsCnt*model.shopPrice;
+                allPrices += [model.goodsCnt integerValue]*[model.shopPrice floatValue];
+                
             }
+#warning 底部全选在这里
+            /**
+             *  底部全选在这
+             */
+            NSLog(@"%@",model);
             return model;
         }] array] mutableCopy];
     }] array] mutableCopy];
@@ -162,18 +147,25 @@
     NSInteger row              = indexPath.row;
     
     NSMutableArray *goodsArray = self.cartData[section];
+    
     NSInteger shopCount        = goodsArray.count;
+    
     PJCarModel *model          = goodsArray[row];
+    
     [model setValue:@(isSelect) forKey:@"isSelect"];
     //判断是都到达足够数量
     NSInteger isSelectShopCount = 0;
     for (PJCarModel *model in goodsArray) {
         if (model.isSelect) {
             isSelectShopCount++;
+#warning 单个选取商品的方法在这里
+            /**
+             *  单个选取的在这里,
+             */
+            NSLog(@"%@",model);
         }
     }
     [self.shopSelectArray replaceObjectAtIndex:section withObject:@(isSelectShopCount==shopCount?YES:NO)];
-    
     [self.cartTableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
     
     /*重新计算价格*/
@@ -189,10 +181,8 @@
     
     NSInteger section  = indexPath.section;
     NSInteger row      = indexPath.row;
-    
     PJCarModel *model = self.cartData[section][row];
-    
-    [model setValue:@(quantity) forKey:@"p_quantity"];
+    [model setValue:[NSString stringWithFormat:@"%ld",quantity] forKey:@"goodsCnt"];
     
     [self.cartTableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
     
@@ -226,7 +216,7 @@
         [self.shopSelectArray replaceObjectAtIndex:section withObject:@(isSelectShopCount==shopCount?YES:NO)];
         [self.cartTableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
     }
-    self.cartGoodsCount-=1;
+    self.cartGoodsCount-= 1;
     /*重新计算价格*/
     self.allPrices = [self getAllPrices];
 }
@@ -269,16 +259,6 @@
 
 
 -(void)getDataWithID:(NSDictionary*)userIDDic{
-    
-    NSString *urlstring = @"m=Customer&c=Cart&a=cartList";
-    
-    [[AFHTTPClient shareInstance] requestWithPath:[NSString stringWithFormat:@"%@%@",URLSTRING,urlstring] Method:HTTPRequestPost Paramenters:userIDDic PrepareExecute:nil Success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@",[[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil] objectForKey:@"data"] );
-        _allDataArray =[[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil] objectForKey:@"data"];
-        
-    } Failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-    }];
     
 }
 

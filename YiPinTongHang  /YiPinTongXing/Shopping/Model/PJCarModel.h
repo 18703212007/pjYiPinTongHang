@@ -20,11 +20,11 @@
 /**
  *  店铺价格
  */
-@property(nonatomic,assign)CGFloat shopPrice;
+@property(nonatomic,strong)NSString *shopPrice;
 /**
  *  市场价格
  */
-@property(nonatomic,assign)CGFloat marketPrice;
+@property(nonatomic,strong)NSString *marketPrice;
 /**
  *  商品图片
  */
@@ -32,7 +32,7 @@
 /**
  *  商品数量
  */
-@property(nonatomic,assign)NSUInteger goodsCnt;
+@property(nonatomic,strong)NSString *goodsCnt;
 /**
  *  选择的商品属性
  */
@@ -42,7 +42,7 @@
 /**
  *  商品的库存量
  */
-@property(nonatomic,assign)NSInteger goodsStock;
+@property(nonatomic,assign)NSInteger stock;//stock
 
 /**
  *  商品是否被选中

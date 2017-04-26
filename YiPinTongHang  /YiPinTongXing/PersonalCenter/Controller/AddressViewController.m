@@ -137,6 +137,11 @@
     addAddress.areaString = cell.ar;
     addAddress.detailsString = cell.artwo;
     addAddress.arid = cell.arid;
+    addAddress.provinceID = cell.provinceID;
+    addAddress.cityID = cell.cityID;
+    addAddress.areaID = cell.areaID;
+    
+    
     
     
     addAddress.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
@@ -274,7 +279,6 @@
         
         
         self.addressArray = [AddressGetModel mj_objectArrayWithKeyValuesArray:[[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil] objectForKey:@"data"]];
-        
         
         [self.tableView reloadData];
         //        [MBProgressHUD ];

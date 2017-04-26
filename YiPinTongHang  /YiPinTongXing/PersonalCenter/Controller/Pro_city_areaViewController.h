@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AddressChooseModel.h"
-typedef void(^AddressChooseBlock)(NSString *string, AddressChooseModel *chooseAddress);
+typedef void(^AddressChooseBlock)(NSString *string, AddressGetModel *chooseAddress);
 
 @interface Pro_city_areaViewController : UIViewController
 

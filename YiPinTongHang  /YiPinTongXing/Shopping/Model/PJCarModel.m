@@ -15,6 +15,6 @@
 }
 
 -(NSString *)description{
-    return [NSString stringWithFormat:@"goodsId:%@ goodsName:%@,shopPrice:%.2f,shopPrice:%.2f,img:%@,商品数量:%ld,商品库存:%ld,商品参数:%@",self.goodsId,self.goodsName,self.shopPrice,self.marketPrice,self.goodsImg,self.goodsCnt,self.goodsStock,self.goodsVal];
+    return [NSString stringWithFormat:@"goodsId:%@ goodsName:%@,shopPrice:%@,shopPrice:%@,img:%@,商品数量:%@,商品库存:%ld,商品参数:%@",self.goodsId,self.goodsName,self.shopPrice,self.marketPrice,self.goodsImg,self.goodsCnt,self.stock,self.goodsVal];
 }
 @end

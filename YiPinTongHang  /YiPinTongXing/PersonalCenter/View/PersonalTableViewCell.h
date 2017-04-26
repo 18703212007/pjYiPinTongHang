@@ -75,6 +75,12 @@ typedef void(^deleteBlock)(AddressTableViewCell *cell);
 
 @property(nonatomic,copy  )deleteBlock     block;
 
+@property(nonatomic,strong)NSString        *provinceID;
+@property(nonatomic,strong)NSString        *cityID;
+@property(nonatomic,strong)NSString        *areaID;
+
+
+
 
 @property(nonatomic,strong)NSString *ar;
 

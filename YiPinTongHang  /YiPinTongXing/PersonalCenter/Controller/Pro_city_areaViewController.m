@@ -27,7 +27,7 @@
 @property(nonatomic,assign)NSInteger   indexCity;
 @property(nonatomic,assign)NSInteger   indexArea;
 
-
+#pragma mark --------   修改这个文件夹了
 @property(nonatomic,strong)NSString *contantStr;
 
 //
@@ -35,7 +35,7 @@
 //
 //@property(nonatomic,assign)BOOL   isThird;
 //
-@property(nonatomic,strong)AddressChooseModel *addressChooseModel;
+@property(nonatomic,strong)AddressGetModel *addressChooseModel;
 
 @end
 
@@ -462,9 +462,9 @@
 }
 
 
--(AddressChooseModel *)addressChooseModel{
+-(AddressGetModel *)addressChooseModel{
     if (!_addressChooseModel) {
-        _addressChooseModel = [AddressChooseModel new];
+        _addressChooseModel = [AddressGetModel new];
     }
     return _addressChooseModel;
 }

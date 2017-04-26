@@ -11,8 +11,8 @@
 @interface PJCarHeaderView : UITableViewHeaderFooterView
 
 @property (nonatomic, strong) UIButton *selectStoreGoodsButton;
-@property(nonatomic, strong) UIButton *storeNameButton;
-
+@property (nonatomic, strong) UIButton *storeNameButton;
+@property (nonatomic, strong) NSString *shopID;
 + (CGFloat)getCartHeaderHeight;
 
 @end

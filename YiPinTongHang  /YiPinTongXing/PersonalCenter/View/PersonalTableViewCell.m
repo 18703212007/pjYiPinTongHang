@@ -402,7 +402,9 @@
     _ar = model.ar;
     _artwo = model.artwo;
     
-    
+    _provinceID = model.provinceID;
+    _cityID     = model.cityID;
+    _areaID     = model.areaID;
     _lb_addressDetails.text = [NSString stringWithFormat:@"%@ %@",model.ar,model.artwo];
     _btn_dafault.tag = [[NSString stringWithFormat:@"%@", model.arid] integerValue];
     _btn_editing.tag =[[NSString stringWithFormat:@"%@", model.arid] integerValue];
