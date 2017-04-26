@@ -36,7 +36,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyBarodPush:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
-    self.loginView.LoginBtn.enabled = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoginBtnDidClicked) name:UITextFieldTextDidChangeNotification object:nil];
     
     
@@ -78,6 +77,11 @@
 
 
 
+-(void)setLoginBtn{
+    
+}
+
+
 
 #pragma mark -- SecurityCodeSend
 -(void)securityBtnDidClicked:(UIButton*)sender{
@@ -113,12 +117,18 @@
 -(void)LoginBtnDidClicked{
 //    [self alertWithMassage:@"登录"];
 
-    if (self.loginView.phoneNum.textField.text.length >=11&&self.loginView.securityCode.textField.text.length >= 6) {
+    if (self.loginView.phoneNum.textField.text.length >=11&&self.loginView.securityCode.textField.text.length == 6) {
         self.loginView.LoginBtn.enabled = YES;
+        
     }else{
         self.loginView.LoginBtn.enabled = NO;
     }
-    
+    if (self.loginView.LoginBtn.enabled) {
+        [self.loginView.LoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.loginView.LoginBtn.backgroundColor = [UIColor colorWithHexString:@"#cf292e"];
+    }else{
+        
+    }
     
   /**           757751         */
     
@@ -126,9 +136,9 @@
 
 -(void)LoginBtnDidClicked:(UIButton*)sender{
     
-    if (self.loginView.LoginBtn.enabled) {
+//    if (self.loginView.LoginBtn.enabled) {
         [self loginMessageGet];
-    }
+//    }
     
 }
 
@@ -237,7 +247,7 @@
 
 
 -(void)backBtn:(UIButton*)sebder{
-        [self dismissViewControllerAnimated:YES completion:nil];
+//        [self dismissViewControllerAnimated:YES completion:nil];
 
 //    [[AppDelegate APPDelegate] exitApplication];
     
@@ -377,16 +387,16 @@
 
     
     
-    self.backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.backBtn setImage:[UIImage imageNamed:(@"sign_in_return.png")] forState:UIControlStateNormal];
-    [self.backBtn addTarget:self action:@selector(backBtn:) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:self.backBtn];
-    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(view.mas_left).with.offset(8);
-        make.top.equalTo(view.mas_top).with.offset(32);
-        make.width.mas_equalTo(@22);
-        make.height.mas_equalTo(@22);
-    }];
+//    self.backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.backBtn setImage:[UIImage imageNamed:(@"sign_in_return.png")] forState:UIControlStateNormal];
+//    [self.backBtn addTarget:self action:@selector(backBtn:) forControlEvents:UIControlEventTouchUpInside];
+//    [view addSubview:self.backBtn];
+//    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(view.mas_left).with.offset(8);
+//        make.top.equalTo(view.mas_top).with.offset(32);
+//        make.width.mas_equalTo(@22);
+//        make.height.mas_equalTo(@22);
+//    }];
 
     
     

@@ -160,8 +160,9 @@
     self.LoginBtn.clipsToBounds = YES;
     self.LoginBtn.cornerRadius = 5;
     [self.LoginBtn setTitle:@"登录" forState:UIControlStateNormal];
-    [self.LoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.LoginBtn.backgroundColor = [UIColor colorWithHexString:@"#cf292e"];//#cf292e
+    [self.LoginBtn setTitleColor:[UIColor lightTextColor] forState:UIControlStateNormal];
+    self.LoginBtn.backgroundColor = [UIColor lightGrayColor];
+//    self.LoginBtn.backgroundColor = [UIColor colorWithHexString:@"#cf292e"];//#cf292e
     [self addSubview:self.LoginBtn];
     [self.LoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakself.subView.mas_bottom).with.offset(49);
