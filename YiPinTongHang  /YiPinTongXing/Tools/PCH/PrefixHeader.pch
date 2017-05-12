@@ -99,6 +99,8 @@
 #define k_Yptx_URL  @"http://www.yipintonghang.com/"
 
 #define URLSTRING   @"http://www.yipintonghang.com/index.php?"
+
+
 /**
  * 用户的userID
  */

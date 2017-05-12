@@ -26,12 +26,18 @@
 
 @implementation PersonalView
 
+
+
+
+
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     self.backgroundColor = [UIColor colorWithHexString:@"#f0f0f0"];
     if (self) {
         [self layoutSubView];
+        
     }
     return self;
 }

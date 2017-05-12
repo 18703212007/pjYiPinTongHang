@@ -28,7 +28,7 @@
        
         make.centerY.equalTo(self);
         make.left.equalTo(self.mas_left).with.offset(8);
-        make.size.mas_equalTo(CGSizeMake(50, 18));
+        make.size.mas_equalTo(CGSizeMake(screen_width, 18));
         
     }];
     self.alertLabel = [UILabel new];

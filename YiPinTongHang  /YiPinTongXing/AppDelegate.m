@@ -88,8 +88,7 @@ static AppDelegate  *_appDelegate;
                                          redirectUri:@"http://www.yipintonghang.com"
                                             authType:SSDKAuthTypeBoth];
 
-//                 NSLog(@"%lu",(unsigned long)SSDKPlatformTypeSinaWeibo);
-//                 break;
+                 break;
              case SSDKPlatformTypeWechat:
                  [appInfo SSDKSetupWeChatByAppId:@"wx6b5ccc706399265c"
                                        appSecret:@"c1389417e35225881c8bfdda8cd06745"];
@@ -106,6 +105,18 @@ static AppDelegate  *_appDelegate;
     
     
     NSLog(@"%@",NSHomeDirectory());
+   
+    
+//    {   "adrId":"45",
+//        "content":["李敏来咯",""],
+//        "goodsNum":["3","1","1","1"],
+//        "goodsPrice":["6003.0","6004.01","6880.0","5868.0"],
+//        "goodsid":["256","256","257","258"],
+//        "shopid":["34","35"],
+//        "uid":"44",
+//        "yunfei":["0","0"],
+//        "zprice":["24013.010000000002","12748.0"]
+//    }
     
     
     
@@ -123,6 +134,42 @@ static AppDelegate  *_appDelegate;
     self.window.rootViewController =rootVC;
     _appDelegate = self;
     [self checkLogin];
+    
+    
+    NSDictionary *dictionary = @{@"order":
+                                     @{
+                                         @"shopid"    :@[@"34"],
+                                         @"goodsid"   :@[@"256"],
+                                         @"goodsNum"  :@[@"2"],
+                                         @"zprice"    :@[@"6003.00"],
+                                         @"goodsPrice":@[@"12006.00"],
+                                         @"yunfei"    :@[@"0"],
+                                         @"adrId"     :@"46",
+                                         @"uid"       :@"45",
+                                         @"content"   :@[@""]
+                                         }
+                                 };
+    
+    
+    
+    
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
+//    
+//    NSString *str =  [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//    NSLog(@"%@",dictionary);
+//
+//    NSString *urlstr = @"m=Customer&c=Orders&a=orderAdd";
+//    [[AFHTTPClient shareInstance] requestWithPath:[NSString stringWithFormat:@"%@%@",URLSTRING,urlstr] Method:HTTPRequestPost Paramenters:str PrepareExecute:^{
+//        
+//    } Success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"%@",[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil]);
+//    } Failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        
+//    }];
+    
+    
+    
+
     
     return YES;
     

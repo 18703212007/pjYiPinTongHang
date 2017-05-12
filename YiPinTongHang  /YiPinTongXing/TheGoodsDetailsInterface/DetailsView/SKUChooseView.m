@@ -68,19 +68,23 @@
 -(void)setDictionary:(NSDictionary *)dictionary{
     _dictionary = dictionary;
     
-    
-    NSDictionary * SkuDate = dictionary[@"attrIosList"][@"attrValList_sku"];
-    NSMutableArray * array = [[NSMutableArray alloc]init];
-    NSArray * allKeys = [SkuDate allKeys];
-    for (int i = 0;i < allKeys.count;i++) {
-        NSString * key = allKeys[i];
-        NSDictionary * dic = [SkuDate objectForKey:key];
-        NSDictionary * skuDic = @{key:dic};
-        [array addObject:skuDic];
+    if (dictionary != nil) {
+        NSDictionary * SkuDate = dictionary[@"attrIosList"][@"attrValList_sku"];
+        NSMutableArray * array = [[NSMutableArray alloc]init];
+        NSArray * allKeys = [SkuDate allKeys];
+        for (int i = 0;i < allKeys.count;i++) {
+            NSString * key = allKeys[i];
+            NSDictionary * dic = [SkuDate objectForKey:key];
+            NSDictionary * skuDic = @{key:dic};
+            [array addObject:skuDic];
+        }
+        [self createDataSource:array];
+        [self reloadWindow:dictionary];
     }
     
-    [self createDataSource:array];
-    [self reloadWindow:dictionary];
+    
+    NSLog(@"%@",dictionary);
+    
 }
 
 
@@ -402,7 +406,7 @@
                 }
             }
             NSArray * changeArray = [self change:resultArray];
-            NSString * resultKey = [changeArray componentsJoinedByString:@";"];
+            NSString * resultKey = [changeArray componentsJoinedByString:@","];
             if (![keysArray containsObject:resultKey]) {
                 [self.seletedEnable addObject:currentIndexPath];
             }
@@ -465,7 +469,7 @@
     }
     NSArray * skeyArray =  [self change:resultArray];
     
-    NSString * key = [skeyArray componentsJoinedByString:@";"];
+    NSString * key = [skeyArray componentsJoinedByString:@","];
     NSString * price = self.goodsprice;
     NSArray * skuIDAr;
     NSString * count =[NSString stringWithFormat:@"%@",self.dictionary[@"attrIosList"][@"zstock"]];
@@ -614,7 +618,7 @@
                 }
             }
             NSArray * changeArray = [self change:resultArray];
-            NSString * resultKey = [changeArray componentsJoinedByString:@";"];
+            NSString * resultKey = [changeArray componentsJoinedByString:@","];
             if (![keysArray containsObject:resultKey]) {
                 [self.seletedEnable addObject:currentIndexPath];
             }
@@ -647,7 +651,7 @@
     }
     for (int j = 0; j < keysArray.count; j++) {
         NSString * key = keysArray[j];
-        NSArray * subKeyAttrs = [key componentsSeparatedByString:@";"];
+        NSArray * subKeyAttrs = [key componentsSeparatedByString:@","];
         NSMutableArray * muArray = [[NSMutableArray alloc]initWithArray:subKeyAttrs];
         NSArray * resultArray = [self change:muArray];
         
@@ -658,7 +662,7 @@
         for (int k = 0; k < combArr.count; k++) {
             [self add2SKUResult:combArr[k] sku:sku];
         }
-        NSString *keys = [resultArray componentsJoinedByString:@";"];
+        NSString *keys = [resultArray componentsJoinedByString:@","];
         NSString * price = [NSString stringWithFormat:@"%@",sku[@"price"]];
 //        NSString * goodsID = NSString(@"%@", sku[@"goodsID"]);
         NSString * skuID = [NSString stringWithFormat:@"%@",sku[@"skuID"]];
@@ -761,7 +765,7 @@
 }
 - (void)add2SKUResult:(NSArray *)combArrItem sku:(NSDictionary *)sku
 {
-    NSString * key = [combArrItem componentsJoinedByString:@";"];
+    NSString * key = [combArrItem componentsJoinedByString:@","];
     NSMutableArray * keysArray = [[NSMutableArray alloc]init];
     for (NSDictionary * dic in self.SKUResult) {
         NSString * keys = [[dic allKeys] firstObject];

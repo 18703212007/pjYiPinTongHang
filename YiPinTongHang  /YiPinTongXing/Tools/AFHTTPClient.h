@@ -42,7 +42,7 @@ typedef void(^ConstructBlock)(id<AFMultipartFormData>   formData);
 
 -(void)requestWithPath:(NSString*)url
                 Method:(NSInteger)method
-           Paramenters:(NSDictionary*)params
+           Paramenters:(id)params
         PrepareExecute:(PrePareExecuteBlock)prepare
                Success:(successBlock)success
                Failure:(FailureBlock)failure;

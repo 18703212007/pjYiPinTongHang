@@ -112,6 +112,7 @@
     
     
     self.bottomAdsView = [UIView new];
+    
     [self.bgScrollView addSubview:self.bottomAdsView];
     [self.bottomAdsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(weakself.listView.mas_bottom).with.offset(10);
@@ -167,10 +168,12 @@
     
     [self.bgScrollView addSubview:self.popularHeadView];
     [self.popularHeadView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
         make.top.equalTo(weakself.hotView.mas_bottom).with.offset(0);
         make.left.equalTo(weakself.otherView.mas_left).with.offset(0);
         make.right.equalTo(weakself.otherView.mas_right).with.offset(0);
         make.height.mas_equalTo(@50);
+        
     }];
     self.popularImg = [UIImageView new];
     self.popularImg.contentMode = UIViewContentModeScaleAspectFill;
@@ -212,8 +215,9 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     
     
-    self.listCollectionView = [[UICollectionView alloc]initWithFrame:rect(0, 0, 0, 0) collectionViewLayout:layout];
+    self.listCollectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
     layout.minimumLineSpacing = 2;
+
     layout.minimumInteritemSpacing = 2;
     //    layout.itemSize = CGSizeMake(screen_width, 180);
     self.listCollectionView.alwaysBounceHorizontal = YES;

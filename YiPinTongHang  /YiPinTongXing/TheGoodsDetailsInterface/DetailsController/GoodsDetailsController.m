@@ -1555,6 +1555,8 @@
 -(void)setSKUView{
     NSDictionary *dictionary = @{@"attrIosList":self.model.attrIosList};
     
+    NSLog(@"%@",self.model);
+    
     self.skuChooseView = [[SKUChooseView alloc]init];
     self.skuChooseView.dictionary =[NSDictionary dictionaryWithDictionary:dictionary];
 

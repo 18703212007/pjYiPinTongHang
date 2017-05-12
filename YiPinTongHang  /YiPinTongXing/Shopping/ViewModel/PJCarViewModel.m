@@ -121,6 +121,7 @@
     self.shopSelectArray = [[[[self.shopSelectArray rac_sequence] map:^id(NSNumber *value) {
         return @(isSelect);
     }] array] mutableCopy];
+    
     self.cartData = [[[[self.cartData rac_sequence] map:^id(NSMutableArray *value) {
         return  [[[[value rac_sequence] map:^id(PJCarModel *model) {
             [model setValue:@(isSelect) forKey:@"isSelect"];
@@ -128,6 +129,8 @@
                 allPrices += [model.goodsCnt integerValue]*[model.shopPrice floatValue];
                 
             }
+            
+            
 #warning 底部全选在这里
             /**
              *  底部全选在这

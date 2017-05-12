@@ -131,7 +131,7 @@
         
     
     }else{
-               _updateDic = @{
+        _updateDic = @{
                        @"uid":UserID,
                        @"uname":self.addressView.consigneeView.tf_name.text,
                        @"utel":self.addressView.phoneNumView.tf_name.text,
@@ -142,7 +142,6 @@
                        };
     }
     
-    NSLog(@"%@",_updateDic);
     [self uploadDataWithDictionary:_updateDic];
     
     
@@ -159,6 +158,12 @@
         
     } Failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
+    
+        
+    
+    
+    
+    
     
 }
 

@@ -41,7 +41,7 @@
     
     [super layoutSubviews];
     
-    _priceLabel.frame = CGRectMake(10, 0.5, screen_width-20, 30);
+//    _priceLabel.frame = CGRectMake(10, 0.5, screen_width-20, 30);
     
 }
 
@@ -59,13 +59,13 @@
     for (NSNumber *prices in pricesArray) {
         shopPrice += prices.floatValue;
     }
-    _priceLabel.text = [NSString stringWithFormat:@"小记:￥%.2f",shopPrice];
+//    _priceLabel.text = [NSString stringWithFormat:@"小记:￥%.2f",shopPrice];
 }
 
 
 + (CGFloat)getCartFooterHeight{
     
-    return 30;
+    return 00;
 }
 
 @end

@@ -137,7 +137,10 @@
                                                       style:UITableViewStyleGrouped];
         [_cartTableView registerNib:[UINib nibWithNibName:@"PJCarTableViewCell" bundle:nil]
              forCellReuseIdentifier:@"PJCarTableViewCell"];
-        [_cartTableView registerClass:NSClassFromString(@"PJCarFooterView") forHeaderFooterViewReuseIdentifier:@"PJCarFooterView"];
+        //footerView
+//        [_cartTableView registerClass:NSClassFromString(@"PJCarFooterView") forHeaderFooterViewReuseIdentifier:@"PJCarFooterView"];
+        
+        //headerView
         [_cartTableView registerClass:NSClassFromString(@"PJCarHeaderView") forHeaderFooterViewReuseIdentifier:@"PJCarHeaderView"];
         _cartTableView.dataSource = self.service;
         _cartTableView.delegate   = self.service;

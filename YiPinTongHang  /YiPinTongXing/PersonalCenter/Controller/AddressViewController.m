@@ -279,7 +279,7 @@
         
         
         self.addressArray = [AddressGetModel mj_objectArrayWithKeyValuesArray:[[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil] objectForKey:@"data"]];
-        
+        NSLog(@"%@",self.addressArray);
         [self.tableView reloadData];
         //        [MBProgressHUD ];
     } Failure:^(NSURLSessionDataTask *task, NSError *error) {

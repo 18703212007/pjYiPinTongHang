@@ -16,7 +16,9 @@
 @end
 
 @interface PJCarViewModel : NSObject
-
+/**
+ *  <#Description#>
+ */
 @property (nonatomic, weak  ) ShoppingViewController *cartVC;
 @property (nonatomic, strong) NSMutableArray         *cartData;
 @property (nonatomic, strong) NSMutableArray         *shopsNameData;
